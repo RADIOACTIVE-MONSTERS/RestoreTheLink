@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title><!-- Insert your title here --></title>
+    <link type="text/css" rel="stylesheet" href="/static/style.css" media="all">
+</head>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{
+  url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+<script type=text/javascript>
+function myFunction() {
+$.getJSON($SCRIPT_ROOT + '/load_rfid', {}, function(data) {
+	if (data.result != 0)
+		window.location.replace("/admin/edit/"+data.result);
+	else
+		myFunction();
+});
+}
+myFunction();
+
+</script>
+
+<body>
+    <header class="header" id="header" role="banner">
+      <div id="header-inner" class="clear-block">
+                  <a href="/" title="Home" rel="home" class="header__logo" id="logo"><img src="/static/logo.png" alt="Home" class="header__logo-image"></a>
+                  <a href="/" class="logout_button">Logout</a>
+      </div>
+    </header>
+    <div id="main" class="clearfix">
+      <div id="main-inner-2">
+
+            <div id="circle_main_admin">
+                 <p class="name_main">Admin<br><span style="font-size:50%;">Scan to Edit/Register</span></p>
+            </div>
+	
+            <div class="circle_connect_admin"  style="left: {{ 380 - 0.5*260 -200 }}px;top: {{ 300 - 0.866*260 }}px;">
+                <p class="name_connect"><a href="/">
+Location<br />
+<select>
+  <option value="london">London</option>
+  <option value="toronto">Toronto</option>
+  <option value="ottawa">Ottawa</option>
+  <option value="thunder_bay">Thunder Bay</option>
+</select>
+</a></p>
+            </div>
+
+<div class="circle_connect_admin"  style="left: {{ 380 - 0.5*260 -200 }}px;top: {{ 300 - 0.866*260 }}px;">
+                <p class="name_connect"><a href="/">
+Location<br />
+<select>
+  <option value="london">London</option>
+  <option value="toronto">Toronto</option>
+  <option value="ottawa">Ottawa</option>
+  <option value="thunder_bay">Thunder Bay</option>
+</select>
+</a></p>
+            </div>
+
+        
+        
+    </div>
+    <footer class="footer">
+      <div id="header-inner" class="clear-block">
+                  <a href="/" title="Home" rel="home" class="white_click" id="logo">Admin</a>
+                  <br />Copyright 2015 <span class="name">Group 009 </span> All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

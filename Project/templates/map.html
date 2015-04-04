@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <title><!-- Insert your title here --></title>
+    <link type="text/css" rel="stylesheet" href="/static/style.css" media="all">
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script>
+var geocoder;
+var map;
+
+var marker;
+
+function initialize() 
+{
+	var latlng = new google.maps.LatLng(-330.897, 150.099);
+    var myOptions = {
+      zoom: 9,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.TERRAIN
+    };
+    map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
+
+	var rendererOptions = { map: map };
+	directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+
+	var point1 = new google.maps.LatLng(-33.8975098545041,151.09962701797485);
+	var point2 = new google.maps.LatLng(-33.8584421519279,151.0693073272705);
+	var point3 = new google.maps.LatLng(-33.87312358690301,150.99952697753906);
+	var point4 = new google.maps.LatLng(-33.94525521656404,151.0421848297119);
+
+	var wps = [{ location: point1 }, { location: point2 }, { location: point3 }, {location: point4}];
+
+	var org = new google.maps.LatLng ( -33.89192157947345,151.13604068756104);
+	var dest = new google.maps.LatLng ( -33.69727974097957,150.29047966003418);
+
+	var request = {
+			origin: org,
+			destination: dest,
+			waypoints: wps,
+			travelMode: google.maps.DirectionsTravelMode.WALKING
+			};
+
+	directionsService = new google.maps.DirectionsService();
+	directionsService.route(request, function(response, status) {
+				if (status == google.maps.DirectionsStatus.OK) {
+					directionsDisplay.setDirections(response);
+				}
+				else
+					alert ('failed to get directions');
+			});
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+<body>
+    <header class="header" id="header" role="banner">
+      <div id="header-inner" class="clear-block">
+                  <a href="/" title="Home" rel="home" class="header__logo" id="logo"><img src="/static/logo.png" alt="Home" class="header__logo-image"></a>
+                  <a href="/" class="logout_button">Logout</a>
+                  <a href="/user/{{ logged_number }}/info/{{ view_number }}" class="back_button">< Back</a>      
+        </div>
+    </header>
+    <div id="main" class="clearfix">
+      <div id="main-inner-3" style="height: 600px">
+	<div style="position:absolute; top:100px; left:100px;"> Loading, please wait.</div>
+        <div id="map-canvas"></div>
+        </div>
+    </div>
+    <footer class="footer">
+      <div id="header-inner" class="clear-block">
+                  <a href="/" title="Home" rel="home" class="white_click" id="logo">Admin</a>
+                  <br />Copyright 2015 <span class="name">Group 009 </span> All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

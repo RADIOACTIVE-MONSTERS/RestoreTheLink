@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title><!-- Insert your title here --></title>
+    <link type="text/css" rel="stylesheet" href="/static/style.css" media="all">
+</head>
+<body>
+    <header class="header" id="header" role="banner">
+      <div id="header-inner" class="clear-block">
+                  <a href="/" title="Home" rel="home" class="header__logo" id="logo"><img src="/static/logo.png" alt="Home" class="header__logo-image"></a>
+                  <a href="/" class="logout_button">Logout</a>
+                  <a href="/user/{{logged_number}}" class="back_button">< Back</a>      
+        </div>
+    </header>
+    <div id="main" class="clearfix">
+      <div id="main-inner-3">
+
+            <table id="newspaper-a" summary="2007 Major IT Companies' Profit">
+<thead>
+<tr>
+<th scope="col">Name</th>
+<th scope="col">{{ name }}</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gender</td>
+<td>{{ gender }}</td>
+</tr>
+<tr>
+<td>Age</td>
+<td>{{ age }}</td>
+</tr>
+<tr class="odd">
+<td>Date of Birth</td>
+<td>{{ date_of_birth }}</td>
+</tr>
+<tr>
+<td>Nationality</td>
+<td>{{ nationality }}</td>
+</tr>
+<tr class="odd">
+<td>Temporary Address</td>
+<td>{{ t_address }}</td>
+</tr>
+<tr>
+<td>Permanent Address</td>
+<td>{{ p_address }}</td>
+</tr>
+<tr class="odd">
+<td>Last Checked In</td>
+<td>{{ checked_in_time }}</td>
+</tr>
+<tr>
+<td>At</td>
+<td>{{ checked_in_location }}</td>
+</tr>
+<tr class="odd">
+<td class="lastleft">History</td>
+<td class="lastright"><a class="view-history" href="/user/{{logged_number}}/map/{{view_number}}">View Map</a></td>
+</tr>
+
+</tbody>
+</table>
+        </div>
+    </div>
+    <footer class="footer">
+      <div id="header-inner" class="clear-block">
+                  <a href="/" title="Home" rel="home" class="white_click" id="logo">Admin</a>
+                  <br />Copyright 2015 <span class="name">Group 009 </span> All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

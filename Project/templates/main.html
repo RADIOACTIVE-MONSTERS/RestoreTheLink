@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Restoring the Link</title>
+    <link type="text/css" rel="stylesheet" href="static/style.css" media="all">
+</head>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{
+  url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+<script type=text/javascript>
+function myFunction() {
+$.getJSON($SCRIPT_ROOT + '/load_rfid', {}, function(data) {
+	if (data.result != 0)
+		window.location.replace("/user/"+data.result);
+	else
+		myFunction();
+});
+}
+myFunction();
+ 
+
+function password() {
+ var password = "1234";
+ var pass_entered;
+
+ pass_entered=prompt('Please enter the password', '');
+
+if(password == pass_entered)
+	window.location = "/admin";
+
+}
+
+</script>
+
+<body>
+    <header class="header" id="header" role="banner">
+      <div id="header-inner" class="clear-block">
+                  <a href="/" title="Home" rel="home" class="header__logo" id="logo"><img src="static/logo.png" alt="Home" class="header__logo-image"></a>
+                        
+        </div>
+    </header>
+    <div id="main" class="clearfix">
+      <div id="main-inner">
+
+            <div id="circle">
+        
+        <p class="scan">Please scan<br/> your Link</p>
+        </div>
+        </div>
+    </div>
+    <footer class="footer">
+      <div id="header-inner" class="clear-block">
+                  <a href="javascript:password();" title="Home" rel="home" class="white_click" id="logo">Admin</a>
+                  <br />Copyright 2015 <span class="name">Group 009 </span> All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>
